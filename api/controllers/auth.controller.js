@@ -9,6 +9,7 @@ export const signup = async (req, res, next) => {
         await user.save();
         res.status(201).json("User created successfully");
     } catch (error) {
+        // This error handling middleware is defined in index.js file
         next(error);
     }
 };
