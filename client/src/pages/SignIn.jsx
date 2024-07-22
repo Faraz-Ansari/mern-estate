@@ -18,8 +18,11 @@ export default function SignIn() {
         try {
             setLoading(true);
 
-            // Check if the form is empty
-            if (Object.keys(formData).length === 0) {
+            // Check if the form is filled or not
+            if (
+                formData.email === undefined ||
+                formData.password === undefined
+            ) {
                 setLoading(false);
                 setError("Please fill in the form");
                 return;

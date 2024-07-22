@@ -18,8 +18,12 @@ export default function SignUp() {
         try {
             setLoading(true);
 
-            // Check if the form is empty
-            if (Object.keys(formData).length === 0) {
+            // Check if the form is filled or not
+            if (
+                formData.username === undefined ||
+                formData.email === undefined ||
+                formData.password === undefined
+            ) {
                 setLoading(false);
                 setError("Please fill in the form");
                 return;
@@ -88,7 +92,7 @@ export default function SignUp() {
                     <span className="text-blue-700">Sign in</span>
                 </Link>
             </div>
-            {error && <p className="text-red-500 mt-3">{error}</p> }
+            {error && <p className="text-red-500 mt-3">{error}</p>}
         </div>
     );
 }
