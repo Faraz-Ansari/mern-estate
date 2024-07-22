@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header className="bg-slate-200 shadow-md">
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+        <header className=" shadow-md">
+            <div className="flex justify-between items-center max-w-6xl mx-auto p-2">
                 <Link to="/">
                     <h1 className="text-sm md:text-3xl font-bold flex flex-wrap">
                         <span className="text-slate-500">Cresta</span>
@@ -12,7 +12,7 @@ export default function Header() {
                     </h1>
                 </Link>
 
-                <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+                <form className="bg-slate-200 p-3 rounded-lg flex items-center">
                     <input
                         type="text"
                         placeholder="Search..."
