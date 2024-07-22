@@ -1,3 +1,3 @@
 export const test = (req, res) => {
-    res.send("Hello fucker");
+    res.send("Hello world");
 };
