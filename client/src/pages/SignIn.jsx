@@ -24,13 +24,6 @@ export default function SignIn() {
         e.preventDefault();
 
         try {
-            // Check if the form is filled or not
-            if (
-                formData.email === undefined ||
-                formData.password === undefined
-            ) {
-                return;
-            }
             dispatch(signInStart());
 
             const response = await fetch("/api/auth/signin", {
@@ -64,6 +57,7 @@ export default function SignIn() {
                     id="email"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
+                    required
                 />
                 <input
                     type="password"
@@ -71,6 +65,7 @@ export default function SignIn() {
                     id="password"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
+                    required
                 />
                 <button
                     disabled={loading}

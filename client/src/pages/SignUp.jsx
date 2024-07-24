@@ -19,17 +19,6 @@ export default function SignUp() {
         try {
             setLoading(true);
 
-            // Check if the form is filled or not
-            if (
-                formData.username === undefined ||
-                formData.email === undefined ||
-                formData.password === undefined
-            ) {
-                setLoading(false);
-                setError("Please fill in the form");
-                return;
-            }
-
             const response = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: {
@@ -64,6 +53,7 @@ export default function SignUp() {
                     id="username"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
+                    required
                 />
                 <input
                     type="email"
@@ -71,6 +61,7 @@ export default function SignUp() {
                     id="email"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
+                    required
                 />
                 <input
                     type="password"
@@ -78,6 +69,7 @@ export default function SignUp() {
                     id="password"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
+                    required
                 />
                 <button
                     disabled={loading}
