@@ -18,6 +18,7 @@ import {
 } from "../redux/user/userSlice";
 import { app } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const fileRef = useRef(null);
@@ -125,19 +126,19 @@ export default function Profile() {
             dispatch(signInStart());
             const response = await fetch("/api/auth/signout");
             const data = await response.json();
-            if(data.success === false) {
+            if (data.success === false) {
                 dispatch(signInFailure(data.message));
                 return;
             }
             dispatch(signInSuccess());
-        } catch(error) {
+        } catch (error) {
             dispatch(signInFailure(error.message));
         }
     };
 
     return (
         <div className="max-w-lg mx-auto p-3">
-            <h1 className="text-3xl text-center my-7 font-semibold">Profile</h1>
+            <h1 className="text-3xl text-center my-5 font-semibold">Profile</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input
                     onChange={(e) => setFile(e.target.files[0])}
@@ -197,23 +198,29 @@ export default function Profile() {
                 >
                     {loading ? "LOADING..." : "UPDATE"}
                 </button>
+                <Link
+                    className="text-white text-center bg-green-700 hover:opacity-95 border p-3 rounded-lg"
+                    to="/create-listing"
+                >
+                    Create Listings
+                </Link>
             </form>
             <div className="flex justify-between mt-5">
                 <span
                     onClick={handleDelete}
-                    className="text-red-700 cursor-pointer"
+                    className="text-red-700 cursor-pointer hover:font-semibold"
                 >
                     Delete Account
                 </span>
                 <span
                     onClick={handleSignOut}
-                    className="text-green-700 cursor-pointer"
+                    className="text-green-700 cursor-pointer hover:font-semibold"
                 >
                     Sign out
                 </span>
             </div>
-            <p className="text-red-700 mt-5">{error ? error : ""}</p>
-            <p className="text-green-700 mt-5">
+            <p className="text-red-700 mt-2">{error ? error : ""}</p>
+            <p className="text-green-700 mt-2">
                 {updateSuccess ? "Data updated successfully" : ""}
             </p>
         </div>
