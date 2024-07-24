@@ -10,8 +10,8 @@ import OAuth from "../components/OAuth";
 
 export default function SignIn() {
     const [formData, setFormData] = useState({});
-    
-    const {loading, error} = useSelector((state) => state.user);
+
+    const { loading, error } = useSelector((state) => state.user);
 
     const navigateTo = useNavigate();
     const dispatch = useDispatch();
@@ -24,16 +24,14 @@ export default function SignIn() {
         e.preventDefault();
 
         try {
-            dispatch(signInStart());
-
             // Check if the form is filled or not
             if (
                 formData.email === undefined ||
                 formData.password === undefined
             ) {
-                dispatch(signInFailure("Please fill all the fields"));
                 return;
             }
+            dispatch(signInStart());
 
             const response = await fetch("/api/auth/signin", {
                 method: "POST",
@@ -76,7 +74,7 @@ export default function SignIn() {
                 />
                 <button
                     disabled={loading}
-                    className="p-3 bg-slate-700 rounded-lg text-white hover:opaciity-95 disabled:opacity-80"
+                    className="p-3 bg-slate-700 rounded-lg text-white hover:opacity-95 disabled:opacity-80"
                 >
                     {loading ? "LOADING..." : "SIGN IN"}
                 </button>
