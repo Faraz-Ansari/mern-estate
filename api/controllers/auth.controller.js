@@ -34,7 +34,13 @@ export const signin = async (req, res, next) => {
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
         const { password: hashedPassword, ...user } = validUser._doc;
 
-        res.cookie("access_token", token, { httpOnly: true })
+        // Set expiry date of 1 hour for token
+        const expiryDate = new Date(Date.now() + 3600000);
+
+        res.cookie("access_token", token, {
+            httpOnly: true,
+            expires: expiryDate,
+        })
             .status(200)
             .json(user);
     } catch (error) {
@@ -46,7 +52,7 @@ export const signout = (req, res, next) => {
     try {
         res.clearCookie("access_token");
         res.status(200).json("User has been logged out!");
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 };
@@ -57,7 +63,14 @@ export const google = async (req, res, next) => {
         if (user) {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
             const { password: pass, ...rest } = user._doc;
-            res.cookie("access_token", token, { httpOnly: true })
+
+            // Set expiry date of 1 hour for token
+            const expiryDate = new Date(Date.now() + 3600000);
+
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                expires: expiryDate,
+            })
                 .status(200)
                 .json(rest);
         } else {
@@ -77,7 +90,14 @@ export const google = async (req, res, next) => {
             await newUser.save();
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
             const { password: pass, ...rest } = newUser._doc;
-            res.cookie("access_token", token, { httpOnly: true })
+
+            // Set expiry date of 1 hour for token
+            const expiryDate = new Date(Date.now() + 3600000);
+
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                expires: expiryDate,
+            })
                 .status(200)
                 .json(rest);
         }
