@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
+import Listing from "../models/listing.model.js";
 
 export const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) {
@@ -45,6 +46,21 @@ export const deleteUser = async (req, res, next) => {
 
         res.clearCookie("access_token");
         res.status(200).json("User has been deleted");
+    } catch (error) {
+        return next(error);
+    }
+};
+
+export const getUserListings = async (req, res, next) => {
+    try {
+        if (req.user.id !== req.params.id) {
+            return next(
+                errorHandler(401, "You can only view your own listings")
+            );
+        }
+
+        const listings = await Listing.find({ userRef: req.params.id });
+        res.status(200).json(listings);
     } catch (error) {
         return next(error);
     }
