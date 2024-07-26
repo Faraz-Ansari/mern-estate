@@ -39,8 +39,7 @@ export default function CreateListings() {
             const listingId = params.listingID;
             const response = await fetch(`/api/listing/get/${listingId}`);
             const data = await response.json();
-            console.log(data);
-
+            
             setFormData(data);
             if(data.success === false) {
                 console.log(data.message);
@@ -179,10 +178,11 @@ export default function CreateListings() {
             if (data.success === false) {
                 setLoading(false);
                 setError(data.message);
+                return;
             }
 
             setLoading(false);
-            navigateTo(`/listing/${data._id}`);
+            navigateTo(`/listing/${listingId}`);
         } catch (error) {
             setError(error.message);
             setLoading(false);
