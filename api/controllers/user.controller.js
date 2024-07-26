@@ -65,3 +65,17 @@ export const getUserListings = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const getUser = async (req, res, next) => {
+    try {
+        const response = await User.findById(req.params.id);
+        if (!response) {
+            return next(errorHandler(404, "User not found"));
+        }
+
+        const { password: pass, ...rest } = response._doc;
+        res.status(200).json(rest);
+    } catch (error) {
+        return next(error);
+    }
+};
