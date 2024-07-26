@@ -168,15 +168,16 @@ export default function Profile() {
                 console.error(data.message);
                 return;
             }
-            setUserListings((prev) => prev.filter((listing) => listing._id !== listingId));
-        } catch(error) {    
+            setUserListings((prev) =>
+                prev.filter((listing) => listing._id !== listingId)
+            );
+        } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     return (
         <div className="max-w-lg mx-auto p-3">
-            
             <h1 className="text-3xl text-center my-5 font-semibold">Profile</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input
@@ -278,7 +279,9 @@ export default function Profile() {
             )}
 
             <div className="flex flex-col gap-4">
-                <h1 className="text-center mt-7 text-3xl font-semibold">Your Listings</h1>
+                <h1 className="text-center mt-7 text-3xl font-semibold">
+                    Your Listings
+                </h1>
                 {userListings &&
                     userListings.length > 0 &&
                     userListings.map((listing) => (
@@ -301,12 +304,19 @@ export default function Profile() {
                             </Link>
 
                             <div className="flex flex-col items-center">
-                                <button onClick={() => handleListingDelete(listing._id)} className="text-red-700 hover:font-semibold">
+                                <button
+                                    onClick={() =>
+                                        handleListingDelete(listing._id)
+                                    }
+                                    className="text-red-700 hover:font-semibold"
+                                >
                                     Delete
                                 </button>
-                                <button className="text-green-700 hover:font-semibold">
-                                    Edit
-                                </button>
+                                <Link to={`/update-listing/${listing._id}`}>
+                                    <button className="text-green-700 hover:font-semibold">
+                                        Edit
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     ))}
