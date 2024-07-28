@@ -31,13 +31,13 @@ export default function ListingItem({ listing }) {
                         {listing.type === "rent" && " / month"}
                     </p>
 
-                    <div className="text-green-700 flex gap-2">
-                        <div className="font-bold text-s">
+                    <div className="text-green-700 flex items-center gap-2">
+                        <div className="font-bold text-sm">
                             {
                                 listing.bedrooms > 1 ? `${listing.bedrooms} beds` : `${listing.bedrooms} bed`
                             }
                         </div>
-                        <div className="font-bold text-s">
+                        <div className="font-bold text-sm">
                             {
                                 listing.bathrooms > 1 ? `${listing.bathrooms} baths` : `${listing.bathrooms} bath`
                             }
