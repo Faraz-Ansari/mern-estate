@@ -9,7 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateListings() {
+export default function UpdateListings() {
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         imageURL: [],
@@ -39,16 +39,16 @@ export default function CreateListings() {
             const listingId = params.listingID;
             const response = await fetch(`/api/listing/get/${listingId}`);
             const data = await response.json();
-            
+
             setFormData(data);
-            if(data.success === false) {
+            if (data.success === false) {
                 console.log(data.message);
                 return;
             }
         };
 
         fetchListings();
-    },[]);
+    }, []);
 
     const handleImageSubmit = () => {
         if (files.length > 0 && files.length + formData.imageURL.length < 7) {

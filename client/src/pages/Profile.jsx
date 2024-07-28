@@ -177,8 +177,8 @@ export default function Profile() {
     };
 
     return (
-        <div className="max-w-lg mx-auto p-3">
-            <h1 className="text-3xl text-center my-4 font-semibold">Profile</h1>
+        <div className="max-w-xl mx-auto p-3">
+            <h1 className="text-3xl text-center my-5 font-semibold">Profile</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <input
                     onChange={(e) => setFile(e.target.files[0])}
@@ -242,10 +242,10 @@ export default function Profile() {
                     className="text-white text-center bg-green-700 hover:opacity-90 border p-3 rounded-lg"
                     to="/create-listing"
                 >
-                    Create Listings
+                    CREATE A LISTING
                 </Link>
             </form>
-            <div className="flex justify-between mt-5">
+            <div className="flex justify-between mt-5 text-lg">
                 <span
                     onClick={handleDelete}
                     className="text-red-700 cursor-pointer hover:font-semibold"
@@ -266,7 +266,7 @@ export default function Profile() {
 
             <button
                 onClick={handleShowListings}
-                className="text-green-700 w-full hover:font-semibold"
+                className="text-green-700 text-lg w-full hover:font-semibold"
             >
                 Show listings
             </button>
@@ -279,7 +279,7 @@ export default function Profile() {
             )}
 
             <div className="flex flex-col gap-4">
-                <h1 className="text-center mt-7 text-3xl font-semibold">
+                <h1 className="text-center mt-3 text-3xl font-semibold">
                     Your Listings
                 </h1>
                 {userListings &&
