@@ -65,50 +65,55 @@ export const getListings = async (req, res, next) => {
         const startIndex = parseInt(req.query.startIndex) || 0;
         let offer = req.query.offer;
 
-        // If offer is not provided or is false, return both sell and rent listings
-        if (offer == "false" || offer == undefined) {
+        // If offer is not defined or is false, return both true and false
+        if (offer === undefined || offer === "false") {
             offer = { $in: [false, true] };
         }
 
         let furnished = req.query.furnished;
-        // If furnished is not provided or is false, return both furnished and unfurnished listings
-        if (furnished == "false" || furnished == undefined) {
+
+        // If furnished is not defined or is false, return both true and false
+        if (furnished === undefined || furnished === "false") {
             furnished = { $in: [false, true] };
         }
 
         let parking = req.query.parking;
-        //  If parking is not provided or is false, return both listings with and without parking
-        if (parking == "false" || parking == undefined) {
+
+        // If parking is not defined or is false, return both true and false
+        if (parking === undefined || parking === "false") {
             parking = { $in: [false, true] };
         }
 
         let type = req.query.type;
-        // If type is not provided or is all, return both sell and rent listings
-        if (type == "all" || type == undefined) {
+
+        // If type is not defined or is "all", return both sale and rent
+        if (type === undefined || type === "all") {
             type = { $in: ["sell", "rent"] };
         }
 
         const searchTerm = req.query.searchTerm || "";
+
         const sort = req.query.sort || "createdAt";
+
         const order = req.query.order || "desc";
 
         const listings = await Listing.find({
-            // Search by searchTerm in the name field and ignore the case sensitivity
+            // search name field for search term and ignore case
             name: { $regex: searchTerm, $options: "i" },
             offer,
             furnished,
             parking,
             type,
         })
-        //  Sort the listings by the sort field in the order specified
+            // sort by sort field in order (asc or desc)
             .sort({ [sort]: order })
-            // Limit the number of listings returned
+            // limit number of results
             .limit(limit)
-            //  Skip the first startIndex listings
+            // skip results before startIndex
             .skip(startIndex);
 
-        res.status(200).json(listings);
+        return res.status(200).json(listings);
     } catch (error) {
-        return next(error);
+        next(error);
     }
 };
