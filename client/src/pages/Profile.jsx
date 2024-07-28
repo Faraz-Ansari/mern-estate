@@ -178,8 +178,8 @@ export default function Profile() {
 
     return (
         <div className="max-w-lg mx-auto p-3">
-            <h1 className="text-3xl text-center my-5 font-semibold">Profile</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <h1 className="text-3xl text-center my-4 font-semibold">Profile</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <input
                     onChange={(e) => setFile(e.target.files[0])}
                     type="file"
