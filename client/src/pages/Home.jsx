@@ -59,13 +59,13 @@ export default function Home() {
         <div>
             {/* top side */}
             <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
-                <h1 className="text-3xl md:text-6xl text-slate-500 font-bold">
+                <h1 className="text-3xl md:text-6xl text-slate-600 font-bold">
                     Find your next{" "}
                     <span className="text-slate-700">Perfect</span>
                     <br /> place with ease
                 </h1>
 
-                <div className="text-slate-700 text-sm md:text-base">
+                <div className="text-slate-700 text-sm md:text-lg">
                     Discover your dream home effortlessly with CrestView's
                     tailored real estate solutions.
                     <br />
@@ -75,7 +75,7 @@ export default function Home() {
 
                 <Link
                     to="/search"
-                    className="text-sm md:text-base text-blue-800 font-bold hover:underline"
+                    className="text-sm md:text-lg text-indigo-700 font-semibold hover:font-bold"
                 >
                     Let&apos;s get started...
                 </Link>
@@ -86,10 +86,9 @@ export default function Home() {
                 {offerListings &&
                     offerListings.length > 0 &&
                     offerListings.map((listing) => (
-                        <SwiperSlide>
+                        <SwiperSlide key={listing._id}>
                             <div
                                 className="h-[500px]"
-                                key={listing._id}
                                 style={{
                                     background: `url(${listing.imageURL[0]}) center no-repeat`,
                                     backgroundSize: "cover",
