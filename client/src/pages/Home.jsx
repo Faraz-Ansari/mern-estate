@@ -65,7 +65,7 @@ export default function Home() {
                     <br /> place with ease
                 </h1>
 
-                <div className="text-slate-700 text-xs md:text-base">
+                <div className="text-slate-700 text-sm md:text-base">
                     Discover your dream home effortlessly with CrestView's
                     tailored real estate solutions.
                     <br />
@@ -75,7 +75,7 @@ export default function Home() {
 
                 <Link
                     to="/search"
-                    className="text-xs md:text-base text-blue-800 font-bold hover:underline"
+                    className="text-sm md:text-base text-blue-800 font-bold hover:underline"
                 >
                     Let&apos;s get started...
                 </Link>
@@ -100,7 +100,7 @@ export default function Home() {
             </Swiper>
 
             {/* listing results  */}
-            <div className="max-w-6xl mx-auto flex flex-col gap-8 my-10">
+            <div className="max-w-6xl mx-auto flex flex-col gap-8 my-10 p-7">
                 {offerListings && offerListings.length > 0 && (
                     <div>
                         <div className="my-3">
@@ -115,7 +115,7 @@ export default function Home() {
                             </Link>
                         </div>
 
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-wrap items-center gap-4">
                             {offerListings.map((listing) => (
                                 <ListingItem
                                     key={listing._id}
