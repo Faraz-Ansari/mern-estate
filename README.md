@@ -40,7 +40,7 @@ Make sure you have the following installed on your machine:
     ```bash
     npm install
 
-    cd ../client
+    cd client
     npm install
     ```
 
@@ -54,7 +54,7 @@ Make sure you have the following installed on your machine:
 4. Create a `env` file in the `client` directory and add the following:
 
     ```
-    VITE_FIREBASE_API_KEY=your_firebase_api_key
+    VITE_FIREBASE_API_KEY=your_google_firebase_api_key
     ```
 
 ## Run the application
