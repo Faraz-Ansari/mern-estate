@@ -52,9 +52,8 @@ export default function SignIn() {
             <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <input
-                    type="email"
-                    placeholder="Email"
-                    id="email"
+                    placeholder="Username"
+                    id="username"
                     className="rounded-lg border p-3"
                     onChange={handleChange}
                     required
